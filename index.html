@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4, #fad0c4, #ff9a9e);
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 90%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .card h1 {
+            color: #333;
+            font-size: 3em;
+            margin: 0;
+            animation: textPopUpTop 1s ease-in-out;
+        }
+        @keyframes textPopUpTop {
+            0% {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .card p {
+            color: #555;
+            font-size: 1.5em;
+            margin: 20px 0 0;
+            animation: textPopUpTop 1.5s ease-in-out;
+        }
+        .card .heart {
+            color: #ff6f61;
+            font-size: 3em;
+            margin-top: 20px;
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.2); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        /* Confetti */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff9a9e;
+            top: -10px;
+            animation: fall 5s infinite;
+        }
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        .confetti:nth-child(1) { left: 5%; background: #ff9a9e; animation-duration: 4s; }
+        .confetti:nth-child(2) { left: 15%; background: #fad0c4; animation-duration: 6s; }
+        .confetti:nth-child(3) { left: 25%; background: #fcb69f; animation-duration: 5s; }
+        .confetti:nth-child(4) { left: 35%; background: #ff9a9e; animation-duration: 7s; }
+        .confetti:nth-child(5) { left: 45%; background: #fad0c4; animation-duration: 3s; }
+        .confetti:nth-child(6) { left: 55%; background: #fcb69f; animation-duration: 4.5s; }
+        .confetti:nth-child(7) { left: 65%; background: #ff9a9e; animation-duration: 5.5s; }
+        .confetti:nth-child(8) { left: 75%; background: #fad0c4; animation-duration: 6.5s; }
+        .confetti:nth-child(9) { left: 85%; background: #fcb69f; animation-duration: 4.75s; }
+        .confetti:nth-child(10) { left: 95%; background: #ff9a9e; animation-duration: 6.25s; }
+        /* Stars */
+        .stars {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: yellow;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            top: -15px;
+            animation: starFall 7s infinite;
+        }
+        @keyframes starFall {
+            0% {
+                transform: translateY(0) rotate(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .stars:nth-child(1) { left: 5%; animation-duration: 6s; }
+        .stars:nth-child(2) { left: 15%; animation-duration: 7s; }
+        .stars:nth-child(3) { left: 25%; animation-duration: 5s; }
+        .stars:nth-child(4) { left: 35%; animation-duration: 6.5s; }
+        .stars:nth-child(5) { left: 45%; animation-duration: 4.5s; }
+        .stars:nth-child(6) { left: 55%; animation-duration: 5.5s; }
+        .stars:nth-child(7) { left: 65%; animation-duration: 6.5s; }
+        .stars:nth-child(8) { left: 75%; animation-duration: 5.75s; }
+        .stars:nth-child(9) { left: 85%; animation-duration: 6.25s; }
+        .stars:nth-child(10) { left: 95%; animation-duration: 7.25s; }
+        /* Fireworks */
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle at 30% 30%, #ff9a9e, #ff6f61);
+            border-radius: 50%;
+            animation: explode 2s infinite;
+            z-index: 1;
+        }
+        @keyframes explode {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(2);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+        .firework:nth-child(1) { left: 10%; top: 20%; animation-duration: 2s; }
+        .firework:nth-child(2) { left: 30%; top: 25%; animation-duration: 2.5s; }
+        .firework:nth-child(3) { left: 50%; top: 20%; animation-duration: 2s; }
+        .firework:nth-child(4) { left: 70%; top: 25%; animation-duration: 3s; }
+        .firework:nth-child(5) { left: 90%; top: 20%; animation-duration: 2.5s; }
+        .firework:nth-child(6) { left: 20%; top: 15%; animation-duration: 3s; }
+        .firework:nth-child(7) { left: 40%; top: 10%; animation-duration: 2.5s; }
+        .firework:nth-child(8) { left: 60%; top: 15%; animation-duration: 3s; }
+        .firework:nth-child(9) { left: 80%; top: 10%; animation-duration: 2s; }
+        .firework:nth-child(10) { left: 95%; top: 5%; animation-duration: 2.5s; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Happy Birthday, Ayuu!</h1>
+        <p>May all your dreams come true.</p>
+        <p>Thank you for bringing joy into my life every day.</p>
+        <p>I'm so grateful to have you by my side.</p>
+        <p class="heart">❤️</p>
+    </div>
+    <!-- Confetti -->
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <!-- Stars -->
+    <div class="stars"></div>
+    <div class="stars"></div>
+    <div class="stars"></div>
+    <div class="stars"></div>
+    <div class="stars"></div>
+    <div class="stars"></div>
+    <div class="stars"></div>
+    <div class="stars"></div>
+    <div class="stars"></div>
+    <div class="stars"></div>
+    <!-- Fireworks -->
+    <div class="firework"></div>
+    <div class="firework"></div>
+    <div class="firework"></div>
+    <div class="firework"></div>
+    <div class="firework"></div>
+    <div class="firework"></div>
+    <div class="firework"></div>
+    <div class="firework"></div>
+    <div class="firework"></div>
+    <div class="firework"></div>
+</body>
+</html>
